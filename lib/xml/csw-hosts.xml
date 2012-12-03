@@ -1,4 +1,5 @@
 <select name="cswhosts">
         <option value="http://www.geo.gob.bo/geonetwork/srv/es/csw">GeoBolivia</option>
         <option value="http://www-dev.geo.gob.bo/geonetwork/srv/es/csw">GeoBolivia test</option>
+        <option value="http://geobretagne.fr/geonetwork/srv/es/csw">GeoBretagne</option>
 </select>
