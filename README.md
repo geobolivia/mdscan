@@ -10,6 +10,10 @@ mdscan utilise :
  * sarissa ieemu xpath  GNU GPLv3
  * jquery               GNU GPLv2    http://jquery.org
 
+Pour créer le fichier lib/xsl/csw-sample.xml
+    www.geo.gob.bo/geonetwork/srv/es/csw?request=GetRecords&service=CSW&version=2.0.2&namespace=xmlns%28csw%3Dhttp%3A%2F%2Fwww.opengis.net%2Fcat%2Fcsw%2F2.0.2%29%2Cxmlns%28gmd%3Dhttp%3A%2F%2Fwww.isotc211.org%2F2005%2Fgmd%29&constraint=AnyText+like+%carreteras%&constraintLanguage=CQL_TEXT&constraint_language_version=1.1.0&typeNames=csw%3ARecord&ELEMENTSETNAME=full&RESULTTYPE=results
+Plus de détails sur la page:
+    http://dev.geonode.org/trac/wiki/CSW_GetRecords
 
 mdscan est produit par geOrchestra
 http://www.georchestra.og/

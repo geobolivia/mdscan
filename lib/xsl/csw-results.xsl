@@ -4,74 +4,35 @@ version="1.0" xmlns:dc="http://purl.org/dc/elements/1.1/"
 xmlns:dct="http://purl.org/dc/terms/">
   <!--xsl:output method="html" encoding="ISO-8859-1"/-->
   <xsl:strip-space  elements="*"/>
-  <xsl:variable name="geonetworkUrl">http://geobretagne.fr/geonetwork</xsl:variable>
+  <xsl:variable name="geonetworkUrl">http://www.geo.gob.bo/geonetwork</xsl:variable>
   <xsl:variable name="pageUrl">
     <xsl:text>javascript:(csw_client.getRecords</xsl:text>
     <xsl:text>('</xsl:text>
   </xsl:variable>
    
-  <!-- liste keywords INSPIRE -->
+  <!-- liste keywords -->
   <xsl:variable name="kwthemes">
-Activités économiques;
-Agriculture;
-Démographie;
-Eau;
-Economie numérique;
-Emploi;
-Energie;
-Enseignement;
-Entreprises;
-Equipements de mesure;
-Equipements publics;
-Finances locales;
-Foncier;
-Habitat;
-Infrastructures de transport;
-Limites administratives;
-Mer et littoral;
-Patrimoine architectural urbain et culturel;
-Patrimoine naturel;
-Risques naturels;
-Risques sanitaires;
-Risques technologiques;
-Référentiel;
-Urbanisme;
-  </xsl:variable>
-  <xsl:variable name="inspirethemes">
-Référentiel de coordonnées;
-Système de maillage géographique;
-Dénominations géographiques;
-Unités administratives;
-Adresses;
-Parcelles cadastrales;
-Réseaux de transport;
-Hydrographie;
-Sites protégés;
-Altitude;
-Occupation des terres;
-Ortho-imagerie;
-Géologie;
-Unités statistiques;
-Bâtiments;
-Sols;
-Usage des sols;
-Santé et sécurité des personnes;
-Services d'utilité publique et services publics;
-Installations de suivi environnemental;
-Lieux de production et sites industriels;
-Installations agricoles et aquacole;
-Répartition de la population — Démographie;
-Zones de gestion, de restriction ou de réglementation et unités de déclaration;
-Zones à risque naturel;
-Conditions atmosphériques;
-Caractéristiques géographiques météorologiques;
-Caractéristiques géographiques océanographiques;
-Régions maritimes;
-Régions biogéographiques;
-Habitats et biotopes;
-Répartition des espèces;
-Sources d'énergie;
-Ressources minérales;
+Agricultura y ganadería;
+Cartografía base;
+Catastro y saneamiento;
+Climatología y meteorología;
+Cooperación internacional;
+Documentos digitales;
+Educación;
+Geología;
+Gestión pública;
+Hidrocarburos y energía;
+Hidrología y recursos hídricos;
+Límites político administrativos,
+Mosaicos e indices de hojas;
+Población e indicadores socioeconómicos;
+Recursos biológicos y ecológicos;
+Recursos forestales;
+Salud;
+Servicios públicos;
+Suelos, cobertura y uso de la tierra;
+Transporte;
+Turismo y cultura;
   </xsl:variable>
   <xsl:template match="/results/*[local-name()='GetRecordsResponse']">
 
@@ -102,7 +63,7 @@ Ressources minérales;
     </xsl:variable>
 
     <fieldset class="captioneddiv">
-        <legend>Résultats</legend>
+        <legend>Resultados</legend>
 
       <!--
       liste
@@ -127,11 +88,11 @@ Ressources minérales;
                                 <xsl:value-of select="number($start)-number(../../request/@maxrecords)" />
                                 <xsl:text>'))</xsl:text>
                             </xsl:attribute>
-                            <xsl:text>&lt;&lt; précédent</xsl:text>
+                            <xsl:text>&lt;&lt; anterior</xsl:text>
                         </a>
                         <xsl:text> | </xsl:text>
                     </xsl:if>
-                    <xsl:text>enregistrements </xsl:text>
+                    <xsl:text>registros </xsl:text>
                     <xsl:value-of select="@numberOfRecordsReturned" />
                     <xsl:text>/</xsl:text>
                     <xsl:value-of select="@numberOfRecordsMatched" />
@@ -143,7 +104,7 @@ Ressources minérales;
                                 <xsl:value-of select="$next" />
                                 <xsl:text>'))</xsl:text>
                             </xsl:attribute>
-                            <xsl:text>suivant &gt;&gt;</xsl:text>
+                            <xsl:text>siguiente &gt;&gt;</xsl:text>
                         </a>
                     </xsl:if>
                 </span>
@@ -151,10 +112,9 @@ Ressources minérales;
         </caption>
         <thead>
             <tr>
-                <th class="title">titre</th>
-                <th ckass="title">INSPIRE</th>
-                <th class="title">classement</th>
-                <th>validation</th>
+                <th class="title">título</th>
+                <th class="title">clasificación</th>
+                <th>validación</th>
                 <th> </th>
             </tr>
         </thead>
@@ -168,9 +128,6 @@ Ressources minérales;
                     </xsl:if>
                     <td class="title">
                         <xsl:call-template name="md-title" />
-                    </td>
-                    <td class="subject">
-                        <xsl:call-template name="md-inspire" />
                     </td>
                     <td class="subject">
                         <xsl:call-template name="md-theme" />
@@ -228,17 +185,6 @@ Ressources minérales;
            </xsl:for-each>
   </xsl:template>
 
-  <!-- classification INSPIRE -->
-  <xsl:template name="md-inspire">
-           <xsl:for-each select="dc:subject">
-              <xsl:if test="contains($inspirethemes,concat(.,';'))">
-                  <span class="inspire"><xsl:value-of select="." /></span>
-                  <xsl:text> </xsl:text>
-              </xsl:if>
-           </xsl:for-each>
-  </xsl:template>
-
-
   <!--template dc:type -->
   <xsl:template match="dc:type">
     <span class="md-info type">
@@ -252,25 +198,25 @@ Ressources minérales;
   </xsl:template>
 
   <!--
-  boutons d'action
+  botones de acción
   -->
 
 
-  <!-- actions -->
+  <!-- acciones -->
   <xsl:template name="md-action-wms-group">
     <a href="#" class="layersmenu">adm</a>
 
     <div class="tooltip">
         <h4><xsl:value-of select="./dc:identifier" />
-            <a target="gn" title="éditer dans GeoNetwork">
+            <a target="gn" title="editar en GeoNetwork">
                 <xsl:attribute name="href">
                     <xsl:value-of select="concat($geonetworkUrl,'?uuid=',./dc:identifier)" />
                 </xsl:attribute>
-                <xsl:text> [éditer] </xsl:text>
+                <xsl:text> [editar] </xsl:text>
             </a>
         </h4>
 
-        <!-- téléchargement -->
+        <!-- descarga -->
         <ul>
             <xsl:for-each select="dc:URI[@protocol='WWW:DOWNLOAD-1.0-http--download']">
                 <xsl:if test=".!=''">
@@ -280,17 +226,17 @@ Ressources minérales;
                                 <xsl:value-of select="." />
                             </xsl:attribute>
                             <xsl:attribute name="title">
-                                <xsl:text>télécharger </xsl:text>
+                                <xsl:text>descargar </xsl:text>
                                 <xsl:value-of select="." />
                             </xsl:attribute>
-                            <xsl:text>télécharger </xsl:text>
+                            <xsl:text>descargar </xsl:text>
                         </a>
                     </li>
                 </xsl:if>
             </xsl:for-each>
         </ul>
 
-        <!-- services -->
+        <!-- servicios -->
         <ul>
             <xsl:for-each select="dc:URI[@protocol='OGC:WMS-1.1.1-http-get-map'
             or @protocol='OGC:WMS-1.3.0-http-get-map']">
@@ -313,12 +259,12 @@ Ressources minérales;
                                 '&amp;service=WMS&amp;VERSION=',substring(@protocol,9,5),
                                 '&amp;request=getLegendGraphic&amp;FORMAT=image/png&amp;LAYER=',@name)" />
                             </xsl:attribute>
-                            <xsl:text>légende</xsl:text>
+                            <xsl:text>leyenda</xsl:text>
                         </a>
                         <!-- geoserver -->
                         <xsl:if test="contains(.,'/geoserver/') and @name!=''">
                             |
-                            <a target="_blank" title="administrer dans GeoServer">
+                            <a target="_blank" title="administrar en GeoServer">
                                 <xsl:attribute name="href">
                                     <xsl:value-of select="substring-before(.,'/geoserver/')" />
                                     <xsl:text>/geoserver/web/?wicket:bookmarkablePage=:org.geoserver.web.data.resource.ResourceConfigurationPage&amp;name=</xsl:text>
@@ -336,7 +282,7 @@ Ressources minérales;
 
 
 
-  <!-- action telechargement -->
+  <!-- accion descarga -->
   <xsl:template name="md-action-download">
     <xsl:for-each select="dc:URI[@protocol='WWW:DOWNLOAD-1.0-http--download']">
         <xsl:if test="position() mod 4=0">
@@ -348,7 +294,7 @@ Ressources minérales;
                     <xsl:value-of select="." />
                 </xsl:attribute>
                 <xsl:attribute name="title">
-                    <xsl:text>télécharger </xsl:text>
+                    <xsl:text>descargar </xsl:text>
                     <xsl:value-of select="." />
                 </xsl:attribute>
                 <xsl:text>DL</xsl:text>
@@ -359,7 +305,7 @@ Ressources minérales;
 
 
   <!--
-  template dessinant les vignettes de test
+  template dibujanda las miniaturas de testeo
   -->
   <xsl:template name="flag-span">
     <xsl:param name="severity" select="undefined" />
@@ -380,7 +326,7 @@ Ressources minérales;
 
   <!-- /////////////////////////////////////////////////////////////// -->
 
-  <!-- template regroupant les tests -->
+  <!-- template agrupando los testeos -->
   <xsl:template name="test-all">
     <xsl:call-template name="test-subject" />
     <xsl:call-template name="test-source" />
@@ -391,13 +337,13 @@ Ressources minérales;
   </xsl:template>
 
 
-  <!-- test des keywords -->
+  <!-- testeo de las palabras clave -->
   <xsl:template name="test-subject">
     <xsl:choose>
         <xsl:when test="count(dc:subject)&lt;2">
             <xsl:call-template name="flag-span">
                 <xsl:with-param name="severity">error</xsl:with-param>
-                <xsl:with-param name="title">pas assez de mots clefs</xsl:with-param>
+                <xsl:with-param name="title">no hay suficientes palabras clave</xsl:with-param>
                 <xsl:with-param name="content">KW</xsl:with-param>
             </xsl:call-template>
         </xsl:when>
@@ -420,13 +366,13 @@ Ressources minérales;
   </xsl:template>
 
 
-  <!-- test sur la source decrite dans les metadonnees -->
+  <!-- testeo sobre la fuente descrita en los metadatos -->
   <xsl:template name="test-source">
     <xsl:choose>
         <xsl:when test="count(dc:source)=0">
             <xsl:call-template name="flag-span">
                 <xsl:with-param name="severity">warning</xsl:with-param>
-                <xsl:with-param name="title">dc:source est vide</xsl:with-param>
+                <xsl:with-param name="title">dc:source esta vacío</xsl:with-param>
                 <xsl:with-param name="content">source</xsl:with-param>
             </xsl:call-template>
         </xsl:when>
@@ -434,7 +380,7 @@ Ressources minérales;
             <xsl:call-template name="flag-span">
                 <xsl:with-param name="severity">warning</xsl:with-param>
                 <xsl:with-param name="title">
-                    <xsl:text>dc:source est peut-être sur une valeur par défaut : </xsl:text>
+                    <xsl:text>dc:source esta quizás con el valor por omisión: </xsl:text>
                     <xsl:value-of select="dc:source" />
                 </xsl:with-param>
                 <xsl:with-param name="content">source</xsl:with-param>
@@ -455,13 +401,13 @@ Ressources minérales;
     </xsl:choose>
   </xsl:template>
 
-  <!-- test sur les droits decrits dans les metadonnees -->
+  <!-- testeo sobre los derechos descritos en los metadatos -->
   <xsl:template name="test-rights">
     <xsl:choose>
         <xsl:when test="count(dc:rights)=0">
             <xsl:call-template name="flag-span">
                 <xsl:with-param name="severity">warning</xsl:with-param>
-                <xsl:with-param name="title">dc:rights est vide</xsl:with-param>
+                <xsl:with-param name="title">dc:rights esta vacío</xsl:with-param>
                 <xsl:with-param name="content">rights</xsl:with-param>
             </xsl:call-template>
         </xsl:when>
@@ -480,7 +426,7 @@ Ressources minérales;
     </xsl:choose>
   </xsl:template>
 
-  <!-- test sur la description des WMS -->
+  <!-- testeo sobre la descripción de los WMS -->
   <xsl:template name="test-link-wms">
     <xsl:for-each select="dc:URI[@protocol='OGC:WMS-1.1.0-http-get-map'
     or @protocol='OGC:WMS-1.1.1-http-get-map'
@@ -492,7 +438,7 @@ Ressources minérales;
             <xsl:when test="@name='' or not(@name)">
                 <xsl:call-template name="flag-span">
                     <xsl:with-param name="severity">error</xsl:with-param>
-                    <xsl:with-param name="title">le nom de la couche est vide</xsl:with-param>
+                    <xsl:with-param name="title">el nombre de la capa esta vació</xsl:with-param>
                     <xsl:with-param name="content">WMS</xsl:with-param>
                 </xsl:call-template>
             </xsl:when>
@@ -500,7 +446,7 @@ Ressources minérales;
                 <xsl:call-template name="flag-span">
                     <xsl:with-param name="severity">warning</xsl:with-param>
                     <xsl:with-param name="title">
-                        <xsl:text>l'adresse ne finit pas par ?&amp; : </xsl:text>
+                        <xsl:text>la dirección no termina por ?&amp;: </xsl:text>
                         <xsl:value-of select="." />
                     </xsl:with-param>
                     <xsl:with-param name="content">WMS</xsl:with-param>
@@ -510,7 +456,7 @@ Ressources minérales;
                 <xsl:call-template name="flag-span">
                     <xsl:with-param name="severity">warning</xsl:with-param>
                     <xsl:with-param name="title">
-                        <xsl:text>le titre est mal défini : </xsl:text>
+                        <xsl:text>el título esta mal definido: </xsl:text>
                         <xsl:value-of select="@name" />
                     </xsl:with-param>
                     <xsl:with-param name="content">WMS</xsl:with-param>
@@ -519,7 +465,7 @@ Ressources minérales;
             <xsl:when test="not(@description) or @description=''">
                 <xsl:call-template name="flag-span">
                     <xsl:with-param name="severity">warning</xsl:with-param>
-                    <xsl:with-param name="title">le titre est vide</xsl:with-param>
+                    <xsl:with-param name="title">el título esta vacío</xsl:with-param>
                     <xsl:with-param name="content">WMS</xsl:with-param>
                 </xsl:call-template>
             </xsl:when>
@@ -536,7 +482,7 @@ Ressources minérales;
     </xsl:for-each>
   </xsl:template>
 
-  <!-- test sur la description des WFS -->
+  <!-- testeo sobre la descripción de los WFS -->
   <xsl:template name="test-link-wfs">
     <xsl:for-each select="dc:URI[@protocol='OGC:WFS-1.0.0-http-get-capabilities'
         or @protocol='OGC:WFS-1.1.0-http-get-capabilities']">
@@ -547,7 +493,7 @@ Ressources minérales;
             <xsl:when test="@name='' or not(@name)">
                 <xsl:call-template name="flag-span">
                     <xsl:with-param name="severity">error</xsl:with-param>
-                    <xsl:with-param name="title">le nom de la couche est vide</xsl:with-param>
+                    <xsl:with-param name="title">el nombre de la capa esta vacío</xsl:with-param>
                     <xsl:with-param name="content">WFS</xsl:with-param>
                 </xsl:call-template>
             </xsl:when>
@@ -555,7 +501,7 @@ Ressources minérales;
                 <xsl:call-template name="flag-span">
                     <xsl:with-param name="severity">warning</xsl:with-param>
                     <xsl:with-param name="title">
-                        <xsl:text>le titre est mal défini : </xsl:text>
+                        <xsl:text>el título esta mal definido: </xsl:text>
                         <xsl:value-of select="@name" />
                     </xsl:with-param>
                     <xsl:with-param name="content">WFS</xsl:with-param>
@@ -564,7 +510,7 @@ Ressources minérales;
             <xsl:when test="not(@description) or @description=''">
                 <xsl:call-template name="flag-span">
                     <xsl:with-param name="severity">warning</xsl:with-param>
-                    <xsl:with-param name="title">le titre est vide</xsl:with-param>
+                    <xsl:with-param name="title">el título esta vacío</xsl:with-param>
                     <xsl:with-param name="content">WFS</xsl:with-param>
                 </xsl:call-template>
             </xsl:when>
@@ -581,7 +527,7 @@ Ressources minérales;
     </xsl:for-each>
   </xsl:template>
 
-  <!-- test sur la description des downloads -->
+  <!-- testeo sobre la descripción de las descargas -->
   <xsl:template name="test-link-download">
     <xsl:for-each select="dc:URI[@protocol='WWW:DOWNLOAD-1.0-http--download']">
         <xsl:if test="position() mod 4=0">
@@ -591,7 +537,7 @@ Ressources minérales;
             <xsl:when test=".=''">
                 <xsl:call-template name="flag-span">
                     <xsl:with-param name="severity">error</xsl:with-param>
-                    <xsl:with-param name="title">adresse de téléchargement manquante</xsl:with-param>
+                    <xsl:with-param name="title">falta la dirección URL de descarga</xsl:with-param>
                     <xsl:with-param name="content">DL</xsl:with-param>
                 </xsl:call-template>
             </xsl:when>
@@ -599,7 +545,7 @@ Ressources minérales;
                 <xsl:call-template name="flag-span">
                     <xsl:with-param name="severity">error</xsl:with-param>
                     <xsl:with-param name="title">
-                        <xsl:text>adresse de téléchargement erronée : </xsl:text>
+                        <xsl:text>URL de descarga erronea: </xsl:text>
                         <xsl:value-of select="." />
                     </xsl:with-param>
                     <xsl:with-param name="content">DL</xsl:with-param>
@@ -608,14 +554,14 @@ Ressources minérales;
             <xsl:when test="contains(.,'version=1.00')">
                 <xsl:call-template name="flag-span">
                     <xsl:with-param name="severity">warning</xsl:with-param>
-                    <xsl:with-param name="title">version WFS getFeature erronée</xsl:with-param>
+                    <xsl:with-param name="title">versión WFS getFeature erronea</xsl:with-param>
                     <xsl:with-param name="content">DL</xsl:with-param>
                 </xsl:call-template>
             </xsl:when>
             <xsl:when test="not(@description) or @description=''">
                 <xsl:call-template name="flag-span">
                     <xsl:with-param name="severity">warning</xsl:with-param>
-                    <xsl:with-param name="title">le titre est vide</xsl:with-param>
+                    <xsl:with-param name="title">el título esta vacío</xsl:with-param>
                     <xsl:with-param name="content">DL</xsl:with-param>
                 </xsl:call-template>
             </xsl:when>

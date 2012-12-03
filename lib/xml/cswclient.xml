@@ -1,6 +1,6 @@
 <div id="cswclient">
     <fieldset>
-        <legend>mdscan - vérification des services de découverte</legend>
+        <legend>mdscan - verificación de los servicios CSW de catálogo</legend>
         <form name="theForm" method="POST" action="javascript:void(csw_client.getRecords())">
             <!-- insertion des services csw -->
             <span id="csw-hosts"></span>
@@ -9,60 +9,60 @@
             <br />
 
             <!-- criteres de recherche -->
-            <select name="queryable" title="portée de recherche">
-                <option value="anytext" selected="selected">Tous champs</option>
-                <option value="title">Titre</option>
-                <option value="subject">Sujet</option>
+            <select name="queryable" title="alcance de la búsqueda">
+                <option value="anytext" selected="selected">Todos los campos</option>
+                <option value="title">Título</option>
+                <option value="subject">Tema</option>
             </select>
-            <select name="operator" title="opérateur de recherche">
-                <option value="contains">contient</option>
-                <option value="equals">égal à</option>
+            <select name="operator" title="operador de búsqueda">
+                <option value="contains">contiene</option>
+                <option value="equals">igual a</option>
             </select>
-            <input type="text" name="query" value="" size="24" title="texte à rechercher"/>
-            <input type="button" value="Rechercher" onClick="javascript:void(csw_client.getRecords())" title="rechercher" />
-            <input type="button" value="Effacer" onClick="javascript:void(csw_client.clearPage())" title="effacer" />
+            <input type="text" name="query" value="" size="24" title="texto a buscar"/>
+            <input type="button" value="Buscar" onClick="javascript:void(csw_client.getRecords())" title="buscar" />
+            <input type="button" value="Borrar" onClick="javascript:void(csw_client.clearPage())" title="borrar" />
             <br />
             <br />
 
-            <!-- mode d'affichage des résulats -->
-            <label for="schema">métadonnées</label>
-            <select id="schema" name="schema" title="schéma d'affichage des métadonnées">
-                <option value="http://www.opengis.net/cat/csw/2.0.2">enregistrement CSW</option>
-                <option value="http://www.isotc211.org/2005/gmd" selected="selected">document ISO19139</option>
+            <!-- modo de visualización de los resultados -->
+            <label for="schema">metadatos</label>
+            <select id="schema" name="schema" title="esquema de visualización de los metadatos">
+                <option value="http://www.opengis.net/cat/csw/2.0.2">registro CSW</option>
+                <option value="http://www.isotc211.org/2005/gmd" selected="selected">documento ISO19139</option>
             </select>
-            <label for="dislaymode">affichage</label>
-            <select id="dislaymode" name="displaymode" title="mode d'affichage">
+            <label for="dislaymode">visualización</label>
+            <select id="dislaymode" name="displaymode" title="modo de visualización">
                 <option value="html">HTML</option>
                 <option value="xml">XML</option>
             </select>
 
-            <label for="sortby">tri</label>
-            <select id="sortby" name="sortby" title="mode de tri">
-                <option value="none">Non trié</option>
-                <option value="title" selected="selected">Trié par Titre</option>
+            <label for="sortby">clasificación</label>
+            <select id="sortby" name="sortby" title="modo de clasificación">
+                <option value="none">Sin clasificación</option>
+                <option value="title" selected="selected">Ordenado por título</option>
             </select>
             <br />
             <br />
 
-            <input type="checkbox" id="checkDebug" title="afficher les informations de déboguage" />
+            <input type="checkbox" id="checkDebug" title="mostrar las informaciones de debug" />
             <label for="checkDebug">
-                <span class="md-test debug nohide">déboguage</span>
+                <span class="md-test debug nohide">debug</span>
             </label>
-            <input type="checkbox" id="checkInfo" title="afficher les informations" />
+            <input type="checkbox" id="checkInfo" title="mostrar las informaciones" />
             <label for="checkInfo">
-                <span class="md-test info nohide">information</span>
+                <span class="md-test info nohide">información</span>
             </label>
-            <input type="checkbox" id="checkWarning" checked="checked" title="afficher les avertissements" />
+            <input type="checkbox" id="checkWarning" checked="checked" title="mostrar los warnings" />
             <label for="checkWarning">
-                <span class="md-test warning nohide">avertissement</span>
+                <span class="md-test warning nohide">warning</span>
             </label>
-            <input type="checkbox" id="checkError" checked="checked" title="afficher les erreurs" />
+            <input type="checkbox" id="checkError" checked="checked" title="mostrar los errores" />
             <label for="checkError">
-                <span class="md-test error nohide">erreur</span>
+                <span class="md-test error nohide">error</span>
             </label>
-            <input type="checkbox" id="checkCritical" checked="checked" title="afficher les erreurs critiques" />
+            <input type="checkbox" id="checkCritical" checked="checked" title="mostrar los errores críticos" />
             <label for="checkCritical">
-                <span class="md-test critical nohide">erreur critique</span>
+                <span class="md-test critical nohide">error crítico</span>
             </label>
         </form>
     </fieldset>
