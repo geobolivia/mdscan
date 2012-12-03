@@ -121,25 +121,23 @@ Turismo y cultura;
         <tbody>
             <!-- boucle metadonnees -->
             <xsl:for-each select="./*[local-name()='SummaryRecord']|./*[local-name()='BriefRecord']|./*[local-name()='Record']">
-                <xsl:if test="dc:type='dataset'">
-                  <tr>
-                    <xsl:if test="position() mod 2=0">
-                        <xsl:attribute name="class">odd</xsl:attribute>
-                    </xsl:if>
-                    <td class="title">
-                        <xsl:call-template name="md-title" />
-                    </td>
-                    <td class="subject">
-                        <xsl:call-template name="md-theme" />
-                    </td>
-                    <td class="tests">
-                      <xsl:call-template name="test-all" />
-                    </td>
-                    <td>
-                        <xsl:call-template name="md-action-wms-group" />
-                    </td>
-                  </tr>
+              <tr>
+                <xsl:if test="position() mod 2=0">
+                    <xsl:attribute name="class">odd</xsl:attribute>
                 </xsl:if>
+                <td class="title">
+                    <xsl:call-template name="md-title" />
+                </td>
+                <td class="subject">
+                    <xsl:call-template name="md-theme" />
+                </td>
+                <td class="tests">
+                    <xsl:call-template name="test-all" />
+                </td>
+                <td>
+                    <xsl:call-template name="md-action-wms-group" />
+                </td>
+              </tr>
             </xsl:for-each>
         </tbody>
       </table>
