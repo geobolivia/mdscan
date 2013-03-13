@@ -4,7 +4,7 @@ version="1.0" xmlns:dc="http://purl.org/dc/elements/1.1/"
 xmlns:dct="http://purl.org/dc/terms/">
   <!--xsl:output method="html" encoding="ISO-8859-1"/-->
   <xsl:strip-space  elements="*"/>
-  <xsl:variable name="geonetworkUrl">http://www.geo.gob.bo/geonetwork</xsl:variable>
+  <xsl:variable name="geonetworkUrl">http://geo.gob.bo/geonetwork</xsl:variable>
   <xsl:variable name="pageUrl">
     <xsl:text>javascript:(csw_client.getRecords</xsl:text>
     <xsl:text>('</xsl:text>
